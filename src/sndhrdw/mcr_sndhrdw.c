@@ -252,8 +252,9 @@ MEMORY_READ_START( ssio_readmem )
 	{ 0x9000, 0x9003, ssio_data_r },
 	{ 0xa001, 0xa001, AY8910_read_port_0_r },
 	{ 0xb001, 0xb001, AY8910_read_port_1_r },
-	{ 0xe000, 0xe000, MRA_NOP },
-	{ 0xf000, 0xf000, input_port_5_r },
+	{ 0xc000, 0xcfff, MRA_NOP },
+	{ 0xe000, 0xefff, MRA_NOP }, /* clear */
+	{ 0xf000, 0xffff, input_port_5_r },
 MEMORY_END
 
 MEMORY_WRITE_START( ssio_writemem )
@@ -263,8 +264,8 @@ MEMORY_WRITE_START( ssio_writemem )
 	{ 0xa002, 0xa002, AY8910_write_port_0_w },
 	{ 0xb000, 0xb000, AY8910_control_port_1_w },
 	{ 0xb002, 0xb002, AY8910_write_port_1_w },
-	{ 0xc000, 0xc000, ssio_status_w },
-	{ 0xe000, 0xe000, MWA_NOP },
+	{ 0xc000, 0xcfff, ssio_status_w },
+	{ 0xd000, 0xdfff, MWA_NOP },
 MEMORY_END
 
 
